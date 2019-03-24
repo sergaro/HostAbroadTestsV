@@ -22,12 +22,13 @@ public class ControllerImpTest {
 	private ControllerImp controlador;
 
 	@Test
-	public void test() {
+	public void actionTest() {
 		this.controlador = (ControllerImp) Controller.getInstance();
-		Pair<Integer, Object> par, par_comando;
-		ArrayList<User> original = new ArrayList<User>();
-		ArrayList<TUser> lista_comando;
-		User yo = new User("Adri", 5, "estoy haciendo pruebas", true);
+		Pair<Integer, Object> pair, command_pair;
+		ArrayList<User> host_original = new ArrayList<User>();
+		ArrayList<TUser> command_list;
+		
+		User host = new User("Jose", 5, "pruebas para buscar un host", true, false);
 		
 		/*
 		//Para crear un nuevo host manualmente 
@@ -44,20 +45,21 @@ public class ControllerImpTest {
 		*/
 		
 		//añadir todos los hosts que haya en nuestra aplicacion
-		original.add(yo);
+		host_original.add(host);
 		
-		par = new Pair(1, original);
+		pair = new Pair(1, host_original);
 		//da igual lo que pases como transfer ya que esta funcion no lo utiliza
-		par_comando = this.controlador.action(Commands.CommandSearchHost, 0);
-		lista_comando = (ArrayList<TUser>) par_comando.getRight();
+		command_pair = this.controlador.action(Commands.CommandSearchHost, 0);
+		command_list = (ArrayList<TUser>) command_pair.getRight();
 		
-		assertEquals(par.getLeft(), par_comando.getLeft());
-		for(int i = 0; i < original.size(); i++) {
-			assertEquals(lista_comando.get(i).getNickname(), original.get(i).getNickname());
-			assertEquals(lista_comando.get(i).getDescription(), original.get(i).getDescription());
-			assertEquals(lista_comando.get(i).getRating(), original.get(i).getRating(), 2);
-			assertEquals(lista_comando.get(i).getHost(), original.get(i).getHost());
+		assertEquals(pair.getLeft(), command_pair.getLeft());
+		for(int i = 0; i < host_original.size(); i++) {
+			assertEquals(command_list.get(i).getNickname(), host_original.get(i).getNickname());
+			assertEquals(command_list.get(i).getDescription(), host_original.get(i).getDescription());
+			assertEquals(command_list.get(i).getRating(), host_original.get(i).getRating(), 2);
+			assertEquals(command_list.get(i).getHost(), host_original.get(i).getHost());
+			assertEquals(command_list.get(i).getTraveler(), host_original.get(i).getTraveler());
 		}
 	}
-
+	
 }

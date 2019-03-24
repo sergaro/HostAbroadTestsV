@@ -14,9 +14,9 @@ public class UserTest {
 	@Test
 	public void test() {
 		User aux;
-		this.myUser = new User("Adri", 5, "estoy haciendo pruebas", false);
+		this.myUser = new User("Adri", 5, "pruebas para buscar un viajero", false, true);
 		
-		aux = new User("Jose", 2, "este se modifica", true);
+		aux = new User("Jose", 2, "este se modifica", true, false);
 		
 		aux.setNickname("Adri");
 		assertEquals(aux.getNickname(), this.myUser.getNickname());
@@ -24,11 +24,14 @@ public class UserTest {
 		aux.setRating(5);
 		assertEquals(aux.getRating(), this.myUser.getRating(), 2);
 		
-		aux.setDescription("estoy haciendo pruebas");
+		aux.setDescription("pruebas para buscar un viajero");
 		assertEquals(aux.getDescription(), this.myUser.getDescription());
 		
 		aux.setHost(false);
 		assertEquals(aux.getHost(), this.myUser.getHost());
+		
+		aux.setTraveler(true);
+		assertEquals(aux.getTraveler(), this.myUser.getTraveler());
 		
 	}
 

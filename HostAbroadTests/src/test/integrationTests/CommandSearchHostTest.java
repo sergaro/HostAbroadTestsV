@@ -23,39 +23,38 @@ public class CommandSearchHostTest {
 	public void test() {
 		this.commandsh = new CommandSearchHost();
 		
-		Pair<Integer, Object> par, par_comando;
-		ArrayList<User> original = new ArrayList<User>();
-		ArrayList<TUser> lista_comando;
-		User yo = new User("Adri", 5, "estoy haciendo pruebas", true);
+		Pair<Integer, Object> pair, command_pair;
+		ArrayList<User> original_list = new ArrayList<User>();
+		ArrayList<TUser> command_list;
+		User yo = new User("Jose", 5, "pruebas para buscar un host", true, false);
 		
-		/*
 		//Para crear un nuevo host en la base de datos manualmente
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("HostAbroad");
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tr = em.getTransaction();
-		tr.begin();
-		
-		em.persist(yo);
-		tr.commit();
-		
-		em.close();
-		emf.close();
-		*/
+//		EntityManagerFactory emf = Persistence.createEntityManagerFactory("HostAbroad");
+//		EntityManager em = emf.createEntityManager();
+//		EntityTransaction tr = em.getTransaction();
+//		tr.begin();
+//		
+//		em.persist(yo);
+//		tr.commit();
+//		
+//		em.close();
+//		emf.close();
 		
 		//añadir todos los hosts que haya en nuestra aplicacion
-		original.add(yo);
+		original_list.add(yo);
 		
-		par = new Pair(1, original);
+		pair = new Pair(1, original_list);
 		//da igual lo que pases como transfer ya que esta funcion no lo utiliza
-		par_comando = this.commandsh.execute(0);
-		lista_comando = (ArrayList<TUser>) par_comando.getRight();
+		command_pair = this.commandsh.execute(0);
+		command_list = (ArrayList<TUser>) command_pair.getRight();
 		
-		assertEquals(par.getLeft(), par_comando.getLeft());
-		for(int i = 0; i < original.size(); i++) {
-			assertEquals(lista_comando.get(i).getNickname(), original.get(i).getNickname());
-			assertEquals(lista_comando.get(i).getDescription(), original.get(i).getDescription());
-			assertEquals(lista_comando.get(i).getRating(), original.get(i).getRating(), 2);
-			assertEquals(lista_comando.get(i).getHost(), original.get(i).getHost());
+		assertEquals(pair.getLeft(), command_pair.getLeft());
+		for(int i = 0; i < original_list.size(); i++) {
+			assertEquals(command_list.get(i).getNickname(), original_list.get(i).getNickname());
+			assertEquals(command_list.get(i).getDescription(), original_list.get(i).getDescription());
+			assertEquals(command_list.get(i).getRating(), original_list.get(i).getRating(), 2);
+			assertEquals(command_list.get(i).getHost(), original_list.get(i).getHost());
+			assertEquals(command_list.get(i).getTraveler(), original_list.get(i).getTraveler());
 		}
 		
 	}
