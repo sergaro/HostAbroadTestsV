@@ -5,12 +5,11 @@ import static org.junit.Assert.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 
 import com.business.User;
 
+import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -22,22 +21,27 @@ public class FindUserHostSteps {
 	private FindUser userPO = new FindUser();
 	
 	@Before("@First")
-	public void clearDataBaseAndCreateANewHost() {
-		//drop table user
+	public void clearDataBaseAndCreateANewHostBeforeSecond() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("HostAbroad");
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
-//		
-//		String query = "drop table user";
-		
-//		em.createNativeQuery(query);
-		em.createQuery("Delete from hostabroad.user").executeUpdate();
-		
-		//em.persist(new User("Test",2.0,"Test description",true));
+		String query = "delete from hostabroad.USER";
+		em.createNativeQuery(query).executeUpdate();
+		em.persist(new User("Test",2.0,"Test description",true));
 		em.getTransaction().commit();
 		
 		em.close();
 		emf.close();
+	}
+	
+	@After("@First")
+	public void clearDataBaseAfterFirst(){
+		this.clearDataBase();
+	}
+	
+	@Before("@Second")
+	public void clearDataBaseBeforSecond() {
+		this.clearDataBase();
 	}
 	
 	@Given("^el usuario navega hasta la pagina de search$")
@@ -57,16 +61,24 @@ public class FindUserHostSteps {
 
 	@Then("^el usuario podrá ver un listado con los anfitriones$")
 	public void el_usuario_podrá_ver_un_listado_con_los_anfitriones() throws Throwable {
-		//assertTrue(this.userPO.checkSearchHost());
+		assertTrue(this.userPO.checkSearchHost());
 	}
 	
-	@Then("^mostrará un listado vacío$")
-	public void mostrará_un_listado_vacío() throws Throwable {
-	   assertTrue(this.userPO.checkSearchHostNoResults());
+	@Then("^mostrará mensaje indicando que no hay ningún anfitrión registrado\\.$")
+	public void mostrará_mensaje_indicando_que_no_hay_ningún_anfitrión_registrado() throws Throwable {
+	    assertTrue(this.userPO.checkEmptyResults());
 	}
-
-	@Then("^un mensaje indicando que no hay ningún anfitrión registrado\\.$")
-	public void un_mensaje_indicando_que_no_hay_ningún_anfitrión_registrado() throws Throwable {
-	    assertEquals(this.userPO.getNoResultErrorMessage(), "");
+	
+	private void clearDataBase() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("HostAbroad");
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		String query = "delete from hostabroad.USER";
+		em.createNativeQuery(query).executeUpdate();
+		//don't know if it is needed
+		em.getTransaction().commit();
+		
+		em.close();
+		emf.close();
 	}
 }

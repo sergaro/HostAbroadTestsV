@@ -15,5 +15,4 @@ Feature: Buscar usuario (anfitrión).
     Given el usuario navega hasta la pagina de search
     When el usuario selecciona como tipo de usuario anfitrión
     And  pulsa el botón de buscar
-    Then mostrará un listado vacío
-    And  un mensaje indicando que no hay ningún anfitrión registrado.
+    Then mostrará mensaje indicando que no hay ningún anfitrión registrado.

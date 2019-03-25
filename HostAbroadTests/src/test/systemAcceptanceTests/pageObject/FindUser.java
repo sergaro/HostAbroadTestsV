@@ -3,44 +3,39 @@ package systemAcceptanceTests.pageObject;
 import org.openqa.selenium.WebElement;
 
 public class FindUser extends PageObject{
-	//this will be changed when we put an id to this checkbox
-	private final String CHECKBOX_HOST_XPATH = "//*[@id=\"HostAbroadsearch-949127791\"]/div/div[2]/div/div/div/div[3]/div/div/div/div/div/div/div[2]/div/div[1]/span/label";
-	private final String ACCEPT_BTN_XPATH = "//*[@id=\"HostAbroadsearch-949127791\"]/div/div[2]/div/div/div/div[3]/div/div/div/div/div/div/div[2]/div/div[3]/div";
-	//all of the selecting constants  should be modified 
-	private final String RESULTFIRST_XPATH = "//*[@id=\"HostAbroadsearch-949127791\"]/div/div[2]/div/div/div/div[3]/div/div/div[3]/div/div[1]/div/div[2]/div";
+	private final String CHECKBOX_HOST_ID = "checkBoxHost";
+	private final String ACCEPT_BTN_ID = "acceptButton";
+	private final String RESULTFIRST_ID = "card1";
+	private final String RESULT_NOTIFICACION_CLASS = ".v-Notification-caption";
+	private final String NO_USERS_MESSAGE = "There are no users matching your criteria.";
 	
 	private WebElement checkBoxHost;
 	private WebElement acceptBtn;
 	private WebElement resultFirst;
+	private WebElement resultNotification;
 
 	public void findSelectHostCheckBoxAndClickIt() {
-		this.checkBoxHost = this.findByXpath(this.CHECKBOX_HOST_XPATH);
+		this.checkBoxHost = this.findById(this.CHECKBOX_HOST_ID);
 		this.checkBoxHost.click();
 	}
 
 	public void clickApply() {
-		this.acceptBtn = this.findByXpath(this.ACCEPT_BTN_XPATH);
+		this.acceptBtn = this.findById(this.ACCEPT_BTN_ID);
 		this.acceptBtn.click();
 	}
 
 	public boolean checkSearchHost() {
-		this.resultFirst = this.findByXpath(this.RESULTFIRST_XPATH);
+		this.resultFirst = this.findById(this.RESULTFIRST_ID);
 		boolean result = this.resultFirst.isDisplayed();
 		this.quitDriver();
 		return result;
 	}
 	
-	public boolean checkSearchHostNoResults() {
-		this.resultFirst = this.findByXpath(this.RESULTFIRST_XPATH);
-		boolean result = this.resultFirst.isDisplayed();
-		return !result;
-	}
-	
-
-	public String getNoResultErrorMessage() {
-		String result = "";
-		
-		return result;
+	public boolean checkEmptyResults() {
+		this.resultNotification = this.findByCssSelector(RESULT_NOTIFICACION_CLASS);
+		String resultText = this.resultNotification.getText();
+		this.quitDriver();
+		return resultText.equals(this.NO_USERS_MESSAGE);
 	}
 
 }
