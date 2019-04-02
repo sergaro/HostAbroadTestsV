@@ -3,5 +3,5 @@ jdk: oraclejdk8
 services: mysql
 env: DB=mysql
 before_script: mysql -u root --password="" < Test/database.sql
-script: mvn test
+script: mvn test dfd
 
