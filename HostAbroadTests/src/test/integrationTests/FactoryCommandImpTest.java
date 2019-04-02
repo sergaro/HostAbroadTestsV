@@ -2,12 +2,11 @@ package integrationTests;
 
 import static org.junit.Assert.assertEquals;
 
+import com.presentation.controller.FactoryCommand;
+import com.presentation.controller.FactoryCommandImp;
 import org.junit.Test;
 
 import com.presentation.commands.*;
-import com.presentation.commands.CommandEnum.Commands;
-import com.presentation.controller.FactoryCommand;
-import com.presentation.controller.FactoryCommandImp;
 
 public class FactoryCommandImpTest {
 	private FactoryCommandImp fcommand;
@@ -16,7 +15,7 @@ public class FactoryCommandImpTest {
 	public void test() {
 		this.fcommand = (FactoryCommandImp) FactoryCommand.getInstance();
 		Command csh = new CommandSearchHost();
-		Command csh_return = this.fcommand.parseCommand(Commands.CommandSearchHost);
+		Command csh_return = this.fcommand.parseCommand(CommandEnum.Commands.CommandSearchHost);
 		
 		csh.setEventReturn(0);
 		

@@ -4,19 +4,17 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 
-import org.junit.Test;
 
+import com.business.businessObjects.User;
+import com.business.transfers.TUser;
 import com.presentation.controller.Controller;
 import com.presentation.controller.ControllerImp;
-import com.business.TUser;
-import com.business.User;
+import org.junit.Test;
+
+
 import com.presentation.commands.*;
-import com.presentation.commands.CommandEnum.Commands;
+
 
 public class ControllerImpTest {
 	private ControllerImp controlador;
@@ -49,7 +47,7 @@ public class ControllerImpTest {
 		
 		pair = new Pair(1, host_original);
 		//da igual lo que pases como transfer ya que esta funcion no lo utiliza
-		command_pair = this.controlador.action(Commands.CommandSearchHost, 0);
+		command_pair = this.controlador.action(CommandEnum.Commands.CommandSearchHost, 0);
 		command_list = (ArrayList<TUser>) command_pair.getRight();
 		
 		assertEquals(pair.getLeft(), command_pair.getLeft());

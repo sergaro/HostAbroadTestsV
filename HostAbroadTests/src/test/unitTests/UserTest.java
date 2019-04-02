@@ -2,11 +2,11 @@ package unitTests;
 
 import static org.junit.Assert.assertEquals;
 
+import com.business.businessObjects.User;
 import org.junit.Test;
 
-import com.business.User;
 
-import junit.framework.Assert;
+
 
 public class UserTest {
 	private User myUser;

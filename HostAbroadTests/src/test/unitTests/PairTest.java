@@ -2,9 +2,10 @@ package unitTests;
 
 import static org.junit.Assert.assertEquals;
 
+import com.presentation.commands.Pair;
 import org.junit.Test;
 
-import com.presentation.commands.Pair;
+
 
 public class PairTest {
 	private Pair par;

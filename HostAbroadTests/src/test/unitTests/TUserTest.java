@@ -1,12 +1,13 @@
 package unitTests;
 
-import static org.junit.Assert.assertEquals;
 
-import org.junit.Assert;
+
+
+import com.business.transfers.TUser;
 import org.junit.Test;
 
-import com.business.TUser;
-import com.business.User;
+import static org.junit.Assert.assertEquals;
+
 
 public class TUserTest {
 	private TUser myUser;
