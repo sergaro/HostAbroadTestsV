@@ -185,8 +185,6 @@
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.8.0</version>
-	  <source>1.8</source>
-          <target>1.8</target>	
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
