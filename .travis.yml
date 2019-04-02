@@ -2,6 +2,6 @@ language: java
 jdk: oraclejdk8
 services: mysql
 env: DB=mysql
-before_script: mysql -u root --password="" < HostAbroadTest/src/main/test/database.sql
+before_script: mysql -u root --password="" < HostAbroadTests/src/main/test/database.sql
 script: mvn test
 
