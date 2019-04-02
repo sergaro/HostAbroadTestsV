@@ -4,5 +4,6 @@ services: mysql
 env: DB=mysql
 before_script: mysql -u root --password="" < HostAbroadTests/src/test/database.sql
 before_install: cd HostAbroadTests
-script: mvn test
+script: cd HostAbroadTest
+        mvn test
 
