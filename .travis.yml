@@ -2,10 +2,11 @@ language: java
 jdk: oraclejdk8
 services: mysql
 env: DB=mysql
-before_script: mysql -u root --password="" < src/test/database.sql
+before_script: mysql -e 'create database hostabroad;' 
+               mysql -u root --password="" < src/test/database.sql
 before_install: cd HostAbroadTests
                 chmod 777  chromedriver.exe
-#-script: mvn surefire:test -Dtest=UserTest.java  Ejecución de un solo test
+#script: mvn surefire:test -Dtest=UserTest.java  Ejecución de un solo test
 
        
 
