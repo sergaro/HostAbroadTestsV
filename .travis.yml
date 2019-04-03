@@ -4,7 +4,7 @@ services: mysql
 env: DB=mysql
 before_script: mysql -u root --password="" < src/test/database.sql
 before_install: cd HostAbroadTests
-<!--- script: mvn surefire:test -Dtest=UserTest.java  -->
+#-script: mvn surefire:test -Dtest=UserTest.java  Ejecución de un solo test
 
        
 
