@@ -46,7 +46,7 @@ public class FindUserHostSteps {
 	
 	@Given("^el usuario navega hasta la pagina de search$")
 	public void el_usuario_navega_hasta_la_pagina_de_search() throws Throwable {
-	    this.userPO.goToPage("http://localhost:8080/HostAbroad/search");
+	    this.userPO.goToPage("http://localhost:8080/HostAbroad_war/search");
 	}
 
 	@When("^el usuario selecciona como tipo de usuario anfitrión$")
