@@ -25,7 +25,7 @@ public class ASSearchImp implements ASSearch {
 		tr.begin();
 		
 		try {
-			String queryString = "SELECT user FROM User user WHERE user.nickname = :nickname";
+			String queryString = "SELECT USER FROM USER USER WHERE USER.nickname = :nickname";
 			Query query = em.createQuery(queryString);
 			query.setParameter("nickname", nickname);
 			User user = null;
@@ -61,7 +61,7 @@ public class ASSearchImp implements ASSearch {
 			EntityTransaction tr = em.getTransaction();
 			tr.begin();
 
-			String consult = "SELECT * FROM User WHERE host = 1;";
+			String consult = "SELECT * FROM USER WHERE host = 1;";
 			
 			Query query = em.createNativeQuery(consult, User.class);
 			
@@ -105,7 +105,7 @@ public class ASSearchImp implements ASSearch {
 			EntityTransaction tr = em.getTransaction();
 			tr.begin();
 
-			String consult = "SELECT * FROM User WHERE traveler = 1;";
+			String consult = "SELECT * FROM USER WHERE traveler = 1;";
 			Query query = em.createNativeQuery(consult, User.class);
 		
 			try {
