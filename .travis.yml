@@ -12,7 +12,7 @@ before_install: cd HostAbroadTests
 script: mvn surefire:test -Dtest=UserTest.java;   #Ejecución de un solo test
         mvn surefire:test -Dtest=PairTest.java;
         mvn surefire:test -Dtest=TUserTest.java;
-        mvn surefire:test -Dtest=FactoryCommandImpTest.java;
+        mvn surefire:test -Dtest=FactoryCommandImpTest.java
 
        
 
