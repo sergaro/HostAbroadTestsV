@@ -9,10 +9,8 @@ before_script: wget http://chromedriver.storage.googleapis.com/2.24/chromedriver
                mysql -e 'create database hostabroad;'; 
                mysql -u root --password="" < src/test/database.sql;
 before_install: cd HostAbroadTests
-script: mvn surefire:test -Dtest=UserTest.java;  
-        mvn surefire:test -Dtest=PairTest.java;
-        mvn surefire:test -Dtest=TUserTest.java;
-        mvn surefire:test -Dtest=FactoryCommandImpTest.java;
+script: mvn surefire:test -Dtest=UserTest.java, -Dtest=PairTest.java, -Dtest=TUserTest.java, -Dtest=FactoryCommandImpTest.java;
+       
 
        
 
