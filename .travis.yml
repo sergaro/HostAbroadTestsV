@@ -1,11 +1,14 @@
 language: java
 jdk: oraclejdk8
+sudo: required
 services: mysql
 env: DB=mysql
-before_script: mysql -e 'create database hostabroad;' 
+before_script: wget http://chromedriver.storage.googleapis.com/2.24/chromedriver_linux64.zip
+               unzip chromedriver_linux64.zip -d /home/travis/virtualenv/python2.7.12/bin/
+               export CHROME_BIN=chromium-browser
+               mysql -e 'create database hostabroad;' 
                mysql -u root --password="" < src/test/database.sql
 before_install: cd HostAbroadTests
-                chmod 777  chromedriver.exe
 #script: mvn surefire:test -Dtest=UserTest.java  Ejecución de un solo test
 
        
