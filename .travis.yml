@@ -11,8 +11,8 @@ before_script: wget http://chromedriver.storage.googleapis.com/2.24/chromedriver
                export CHROME_BIN=chromium-browser;
                mysql -e 'create database hostabroad;'; 
                mysql -u root --password="" < src/test/database.sql;
-before_install: cd HostAbroadTests
-                google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+before_install: - cd HostAbroadTests
+                - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 #script: mvn surefire:test -Dtest=UserTest.java;
 
        
